@@ -1,24 +1,30 @@
-
-
 class Pet:
+
     PET_TYPES = ["dog", "cat", "rodent", "bird", "reptile", "exotic"]
-    all=[]
+    all = []
+
     def __init__(self, name, pet_type, owner=None):
         self.name=name
+        self.owner = owner
+    
         if pet_type not in Pet.PET_TYPES:
-            raise Exception("is not pet type")
-        self.pet_type=pet_type
-        self.owner=owner
+            raise TypeError("Pet type must be valid")
         Pet.all.append(self)
-
+        self.pet_type = pet_type
 
 class Owner:
-    pets=[]
-    def __init__(self, name):
+    def __init__(self,name):
         self.name=name
-    def add_pet(self, pet):
-        if not isinstance():
-            raise Exception("Invalid pet. Expected an instance of Pet.")
-        self.pets.append(self)
+    
     def pets(self):
-        return self.pets
+        return [pet for pet in Pet.all if pet.owner == self]
+  
+    def add_pet(self,pet):
+        if not isinstance(pet, Pet):
+            raise TypeError("Pet must be an instance of Pet Class") 
+        pet.owner =  self
+
+    def get_sorted_pets(self):
+        owner_pets = [pet for pet in Pet.all if pet.owner == self]
+        return sorted(owner_pets, key=lambda pet: pet.name)
+    
