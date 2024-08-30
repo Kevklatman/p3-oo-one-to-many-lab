@@ -13,12 +13,11 @@ class Pet:
 
 
 class Owner:
-    def __init__(self, owner):
-        self.ownder=owner
+    def __init__(self, name):
+        self.name=name
     def add_pet(self, pet):
         if not isinstance(Pe):
             raise Exception("Invalid pet. Expected an instance of Pet.")
         self.pets.append(pet)
-        pet.owner=self
     def pets(self):
         return self.pets
